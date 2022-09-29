@@ -96,13 +96,11 @@ const registerUser = async function (req, res) {
     }
 
     if (!isValidPassword(password)) {
-      return res
-        .status(400)
-        .send({
-          status: false,
-          message:
-            "Enter a valid password (min-8,max-15, contains atleast one num and symbol each, Have a mixuture of uppercase and lowercase letters)",
-        });
+      return res.status(400).send({
+        status: false,
+        message:
+          "Enter a valid password (min-8,max-15, contains atleast one num and symbol each, Have a mixuture of uppercase and lowercase letters)",
+      });
     }
 
     if (address) {
@@ -127,11 +125,11 @@ const registerUser = async function (req, res) {
 
     const createUser = await userModel.create(data);
 
-    res
+    return res
       .status(201)
       .send({ status: true, message: "Success", data: createUser });
   } catch (error) {
-    res.status(500).send({ status: false, message: error.message });
+    return res.status(500).send({ status: false, message: error.message });
   }
 };
 
@@ -153,13 +151,11 @@ const userLogin = async function (req, res) {
     }
 
     if (!isValidPassword(password)) {
-      return res
-        .status(400)
-        .send({
-          status: false,
-          message:
-            "Enter a valid password (min-8,max-15, contains atleast one num and symbol each, Have a mixuture of uppercase and lowercase letters)",
-        });
+      return res.status(400).send({
+        status: false,
+        message:
+          "Enter a valid password (min-8,max-15, contains atleast one num and symbol each, Have a mixuture of uppercase and lowercase letters)",
+      });
     }
 
     let userDetail = await userModel.findOne({
@@ -183,7 +179,7 @@ const userLogin = async function (req, res) {
     });
 
     res.setHeader("x-api-key", token);
-    res.status(200).send({ status: true, message: "Success", data: { token } });
+    return res.status(200).send({ status: true, message: "Success", data: { token } });
   } catch (error) {
     res.status(500).send({ status: false, message: error.message });
   }

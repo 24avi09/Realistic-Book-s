@@ -135,7 +135,7 @@ const createReview = async function (req, res) {
       .status(201)
       .send({ status: false, message: "Book list", data: responseData });
   } catch (error) {
-    res.status(500).send({ status: false, message: error.message });
+    return res.status(500).send({ status: false, message: error.message });
   }
 };
 
@@ -216,7 +216,7 @@ const updateReview = async function (req, res) {
       .status(200)
       .send({ status: true, message: "book list", data: responseData });
   } catch (error) {
-    return res.status(500).send({ status: false, message: error });
+    return res.status(500).send({ status: false, message: error.message });
   }
 };
 
@@ -286,7 +286,7 @@ const deletReview = async function (req, res) {
       .status(200)
       .send({ status: true, message: "Deleted Successfully" });
   } catch (error) {
-    res.status(500).send({ status: false, message: error });
+    return res.status(500).send({ status: false, message: error });
   }
 };
 
