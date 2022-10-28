@@ -5,9 +5,15 @@ const { createBook, getBooks, getBooksParams, updateBook, deletbook } = require(
 const{ authentication, Authorisation }=require("../middleware/auth")
 const{ createReview, updateReview ,deletReview}=require("../controller/reviewController")
 
+
+//------user apis--------//
+
 router.post("/register", registerUser)
 
 router.post("/login", userLogin)
+
+
+//------book apis--------//
 
 router.post("/books",authentication,createBook)
 
@@ -18,6 +24,9 @@ router.get("/books/:bookId",authentication, getBooksParams )
 router.put("/books/:bookId",authentication,Authorisation, updateBook )
 
 router.delete("/books/:bookId",authentication,Authorisation, deletbook )
+
+
+//------review apis--------//
 
 router.post("/books/:bookId/review", createReview )
 

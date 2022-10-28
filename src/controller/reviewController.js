@@ -193,7 +193,7 @@ const updateReview = async function (req, res) {
             review: review,
             rating: rating,
             reviewedBy: reviewedBy,
-            reviewedAt: new Date(),
+            reviewedAt: new Date(),       
           },
         },
         { new: true }
